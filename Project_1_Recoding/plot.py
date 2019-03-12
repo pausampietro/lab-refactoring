@@ -1,9 +1,10 @@
-# todo solve not found libraries
+
 import matplotlib.pyplot as plt
 
 
-# generate and plot the playground
-def plot_plg():
+def plot_plg(plg):    # generate and plot the playground
+
+    # plot the lines of the table
     v0 = [(0, 0), (0, 12)]
     v1 = [(4, 4), (0, 12)]
     v2 = [(8, 8), (0, 12)]
@@ -15,6 +16,7 @@ def plot_plg():
     plt.plot(v0[0], v0[1], v1[0], v1[1], v2[0], v2[1], v3[0], v3[1])
     plt.plot(h0[0], h0[1], h1[0], h1[1], h2[0], h2[1], h3[0], h3[1])
 
+    # plot the elements (crosses and circles)
     for j in range(3):
 
         for k in range(3):
