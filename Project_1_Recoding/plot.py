@@ -1,8 +1,9 @@
 
 import matplotlib.pyplot as plt
+import globals as g
 
 
-def plot_plg(plg):    # generate and plot the playground
+def plot_plg():    # generate and plot the playground
 
     # plot the lines of the table
     v0 = [(0, 0), (0, 12)]
@@ -23,12 +24,12 @@ def plot_plg(plg):    # generate and plot the playground
             yc = 10 - j * 4  # changing reference (from PLG indexes to PLOT coordinates) --> DEFINING CENTER OF FIGURES
             xc = 2 + k * 4
 
-            if plg[j][k] == 1:      # plot a 'cross' by a vert. and a horit. line from a given center (xc,yc)
+            if g.plg[j][k] == 1:      # plot a 'cross' by a vert. and a horit. line from a given center (xc,yc)
                 vl = [(xc, xc, xc), (yc - 1, yc, yc + 1)]
                 hl = [(xc - 1, xc, xc + 1), (yc, yc, yc)]
                 plt.plot(vl[0], vl[1], hl[0], hl[1])
 
-            elif plg[j][k] == -1:       # plot a 'circle' by 4 lines from a given center (xc,yc)
+            elif g.plg[j][k] == -1:       # plot a 'circle' by 4 lines from a given center (xc,yc)
                 se = [(xc, xc + 1), (yc - 1, yc)]
                 ne = [(xc, xc + 1), (yc + 1, yc)]
                 no = [(xc, xc - 1), (yc + 1, yc)]

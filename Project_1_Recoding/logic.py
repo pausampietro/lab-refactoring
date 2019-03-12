@@ -1,6 +1,8 @@
-# todo solve not found libraries
+
 import random
 import numpy as np
+import globals as g
+# todo replace every plg for g.plg
 
 
 # randomly returns a string with the starting player: 'user' or 'pc'
@@ -9,21 +11,13 @@ def starting_one():
     return players[random.randrange(0, 2)]
 
 
-# returns true is the given coordinates match with an empty space in the playground
-def empty_cell(plg, x, y):              # todo maybe put similar functions toguether with if: statement
-    return plg[2-y][x] == 0
-
-
-def empty_cell_pc(x, y):
+# returns true if the given coordinates match with an empty space in the playground
+def empty_cell(x, y):
     return plg[x][y] == 0
 
 
 # updates the variable plg filling the position (x,y) with or 1 or -1
-def update_plg_user(bin, x, y):
-    plg[2 - y][x] = bin
-
-
-def update_plg_pc(bin, x, y):
+def update_plg(bin, x, y):
     plg[x][y] = bin
 
 
@@ -157,7 +151,7 @@ def pc_move():
     if not found:
         pc_x = random.randrange(0, 3)
         pc_y = random.randrange(0, 3)
-        while not empty_cell_pc(pc_x, pc_y):
+        while not empty_cell(plg, pc_x, pc_y):
             pc_x = random.randrange(0, 3)
             pc_y = random.randrange(0, 3)
         return pc_x, pc_y
