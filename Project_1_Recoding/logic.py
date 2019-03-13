@@ -15,8 +15,8 @@ def empty_cell(plg, x, y):
 
 
 # updates the variable plg filling the position (x,y) with or 1 or -1
-def update_plg(plg, bin, x, y):
-    plg[x][y] = bin
+def update_plg(plg, bi, x, y):
+    plg[x][y] = bi
     return plg
 
 
@@ -30,8 +30,8 @@ def who_wins(plg):
     elif np.trace(plg_a) == -3 or np.trace(np.fliplr(plg_a)) == -3:
         winner = 'pc'
     else:
-        for i in range(3):
-            if plg_a.sum(axis=1)[i] == 3 or plg_a.sum(axis=0)[i] == 3:  # before 'or': check X axis, after check Y axis)
+        for i in range(3):                     # before 'or': check X axis, after check Y axis) x3 (rows/columns)
+            if plg_a.sum(axis=1)[i] == 3 or plg_a.sum(axis=0)[i] == 3:
                 winner = 'user'
                 break
             elif plg_a.sum(axis=1)[i] == -3 or plg_a.sum(axis=0)[i] == -3:
@@ -55,11 +55,13 @@ def user_move():
         # check if its an integer
         choosen_y = input("Indicate de Y coordinate of your move (1,2,3)")
 
-    return (int(choosen_x) - 1), (int(choosen_y) - 1)
+    return int(choosen_x) - 1, int(choosen_y) - 1
 
 
 # This function does the pc strategic move (included the check for empty cells)
 def pc_move(plg):
+    global found
+
     # attaking ->> looking for alignment of two '-1' and putting the third
     found = False
     plg_a = np.array(plg)
@@ -146,6 +148,7 @@ def pc_move(plg):
                 else:
                     return 2, i
                     break
+
     # There's no opportunity to win or block: RANDOM GAME
     if not found:
         pc_x = random.randrange(0, 3)
